@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "96137911611",
+    "project_id": "flutter-video-audio-chat-93417",
+    "storage_bucket": "flutter-video-audio-chat-93417.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96137911611:android:8a0a6585b0c3337717eb1e",
+        "android_client_info": {
+          "package_name": "com.example.chat_wave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96137911611-77a8kcvjhab5c7b1csgvbi4lorupk0p1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjswQpp_XxiEO0C3Bbgw1UCDDe2USl2Yk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96137911611-77a8kcvjhab5c7b1csgvbi4lorupk0p1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
