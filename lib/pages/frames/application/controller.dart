@@ -59,7 +59,7 @@ class ApplicationController extends GetxController {
           //color: Color.fromARGB(255, 6, 171, 11),
           color: Color.fromARGB(255, 65, 7, 164),
         ),
-        label: 'chat',
+        label: 'profile',
         backgroundColor: AppColor.primaryBackground,
       ),
     ];
