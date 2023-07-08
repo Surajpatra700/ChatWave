@@ -1,86 +1,50 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:chat_wave/pages/chat/widgets/message_list.dart';
 import 'package:chat_wave/pages/message/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MessagePage extends GetView<MessageController> {
   const MessagePage({super.key});
 
-  Widget _headBar() {
-    return Center(
-      child: Container(
-        width: 330.w,
-        height: 50.w,
-        margin: EdgeInsets.only(bottom: 20.h, top: 20.h),
-        child: Row(
-          children: [
-            Stack(
-              children: [
-                GestureDetector(
-                  child: Container(
-                    width: 44.h,
-                    height: 44.h,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(22.h),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset: Offset(0, 1),
-                          ),
-                        ]),
-                    child: controller.state.head_detail.value.photourl == null
-                        ? Image(image: AssetImage("assets/images/person.png"))
-                        : Text("Hi"),
-                  ),
-                  onTap: () {
-                    //controller.goProfile();
-                  },
-                ),
-                Positioned(
-                  bottom: 5.w,
-                  height: 10.w,
-                  right: 0.w,
-                  child: Container(
-                    width: 10.w,
-                    height: 10.w,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2.w,
-                        color: Colors.grey.withOpacity(0.1),
-                      ),
-                      color: Color.fromRGBO(17, 124, 20, 1),
-                      borderRadius: BorderRadius.circular(15.w),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+  AppBar _buildAppBar() {
+    return AppBar(
+      // leading: IconButton(
+      //     onPressed: () {
+      //       Get.back();
+      //     },
+      //     icon: Icon(
+      //       Icons.arrow_back_ios,
+      //       color: Colors.white,
+      //     )),
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            // ignore: prefer_const_literals_to_create_immutables
+            colors: [
+              Color.fromARGB(255, 176, 106, 231),
+              Color.fromARGB(255, 166, 112, 231),
+              Color.fromARGB(255, 131, 123, 231),
+              Color.fromARGB(255, 104, 132, 231),
+            ],
+            transform: GradientRotation(90),
+          ),
         ),
       ),
+      title: Text("Message"),
+      centerTitle: true,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  pinned: true,
-                  title: _headBar(),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+      appBar: _buildAppBar(),
+      body: MessageList(),
     );
   }
 }

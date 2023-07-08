@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:chat_wave/pages/contacts/index.dart';
 import 'package:chat_wave/pages/frames/application/index.dart';
+import 'package:chat_wave/pages/message/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +15,7 @@ class ApplicationPage extends GetView<ApplicationController> {
       controller: controller.pageController,
       onPageChanged: controller.handlePageChanged,
       children: [
-        Center(child: Container(child: Text("chat"),)),
+        MessagePage(),
         ContactPage(),
         Center(child: Container(child: Text("profile"),)),
       ],

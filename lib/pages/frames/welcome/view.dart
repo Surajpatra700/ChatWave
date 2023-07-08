@@ -17,7 +17,7 @@ class WelcomePage extends GetView<WelcomeController> {
       body: Obx(
         () => SizedBox(
             width: 360.w,
-            height: 780.h,
+            height: 780.w,
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [

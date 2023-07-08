@@ -22,7 +22,7 @@ class ContactController extends GetxController {
 
 // THIS FUNCTION HELPS IN CONVERSATION BETWEEN TWO USERS
   goChat(UserData to_userdata) async {
-    var from_message = await db
+    var from_messages = await db
         .collection("message")
         .withConverter(
           fromFirestore: Msg.fromFirestore,
@@ -32,7 +32,7 @@ class ContactController extends GetxController {
         .where("to_uid", isEqualTo: to_userdata.id)
         .get();
 
-    var to_message = await db
+    var to_messages = await db
         .collection("message")
         .withConverter(
           fromFirestore: Msg.fromFirestore,
@@ -42,12 +42,11 @@ class ContactController extends GetxController {
         .where("to_uid", isEqualTo: token)
         .get();
 
-
-  // FOR THE 1ST TIME CONVERSATION OF 2 USERS
-    if (from_message.docs.isEmpty && to_message.docs.isEmpty) {
+    // FOR THE 1ST TIME CONVERSATION OF 2 USERS
+    if (from_messages.docs.isEmpty && to_messages.docs.isEmpty) {
       String profile = await UserStore.to.getProfile();
       UserLoginResponseEntity userdata =
-          UserLoginResponseEntity.fromJson(jsonDecode(profile));
+          UserLoginResponseEntity.fromJson(json.decode(profile));
       var msgdata = Msg(
         from_uid: userdata.accessToken,
         to_uid: to_userdata.id,
@@ -74,23 +73,23 @@ class ContactController extends GetxController {
           "to_avatar": to_userdata.photourl?? "",
         });
       });
-    }else{
+    } else {
       // IF USER HAS SOME DATA THIS WILL CALL THIS
-      if(from_message.docs.isNotEmpty){
+      if (from_messages.docs.isNotEmpty) {
         Get.toNamed("/chat", parameters: {
-          "doc_id": from_message.docs.first.id,
+          "doc_id": from_messages.docs.first.id,
           "to_uid": to_userdata.id ?? "",
           "to_name": to_userdata.name ?? "",
-          "to_avatar": to_userdata.photourl?? "",
+          "to_avatar": to_userdata.photourl ?? "",
         });
       }
       // IF THE RECIEPANT HAS SOME DATA THEN THIS METHOD WILL CALL THIS
-      if(to_message.docs.isNotEmpty){
+      if (to_messages.docs.isNotEmpty) {
         Get.toNamed("/chat", parameters: {
-          "doc_id": to_message.docs.first.id,
+          "doc_id": to_messages.docs.first.id,
           "to_uid": to_userdata.id ?? "",
           "to_name": to_userdata.name ?? "",
-          "to_avatar": to_userdata.photourl?? "",
+          "to_avatar": to_userdata.photourl ?? "",
         });
       }
     }

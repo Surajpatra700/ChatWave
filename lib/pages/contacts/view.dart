@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:chat_wave/pages/contacts/index.dart';
 import 'package:chat_wave/pages/contacts/widgets/contact_list.dart';
 import 'package:dots_indicator/dots_indicator.dart';

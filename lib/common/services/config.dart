@@ -8,7 +8,7 @@ class ConfigStore extends GetxController {
   static ConfigStore get to => Get.find();
 
   bool isFirstOpen = false;
-  PackageInfo? _platform;
+  PackageInfo? _platform; // Returns Platform on which the app is running IOS / Android
   String get version => _platform?.version ?? '-';
   bool get isRelease => bool.fromEnvironment("dart.vm.product");
   Locale locale = Locale('en', 'US');

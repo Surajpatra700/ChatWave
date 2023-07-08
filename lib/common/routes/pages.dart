@@ -6,6 +6,8 @@ import 'package:chat_wave/pages/frames/application/index.dart';
 import 'package:chat_wave/pages/frames/sign_in/bindings.dart';
 import 'package:chat_wave/pages/frames/sign_in/view.dart';
 import 'package:chat_wave/pages/frames/welcome/index.dart';
+import 'package:chat_wave/pages/message/index.dart';
+import 'package:chat_wave/pages/message/photoview/index.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -51,12 +53,18 @@ class AppPages {
       binding: ChatBinding(),
     ),
 
-    // GetPage(
-    //   name: AppRoutes.Message,
-    //   page: () => MessagePage(),
-    //   binding: MessageBinding(),
-    //   middlewares: [RouteAuthMiddleware(priority: 1)],
-    // ),
+    GetPage(
+      name: AppRoutes.Photoimgview,
+      page: () => PhotoImageView(),
+      binding: PhotoImageViewBinding(),
+    ),
+
+    GetPage(
+      name: AppRoutes.Message,
+      page: () => MessagePage(),
+      binding: MessageBinding(),
+      //middlewares: [RouteAuthMiddleware(priority: 1)],
+    ),
 
     // GetPage(
     //   name: AppRoutes.Profile,

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_wave/common/style/appColor.dart';
 import 'package:chat_wave/pages/chat/index.dart';
@@ -9,6 +11,7 @@ import 'package:get/get.dart';
 
 class ChatPage extends GetView<ChatController> {
   const ChatPage({super.key});
+  
 
   AppBar _buildAppBar() {
     return AppBar(
@@ -134,9 +137,12 @@ class ChatPage extends GetView<ChatController> {
     );
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: _buildAppBar(),
       body: SafeArea(
         child: ConstrainedBox(
@@ -160,31 +166,83 @@ class ChatPage extends GetView<ChatController> {
                           height: 55.h,
                           child: TextFormField(
                             keyboardType: TextInputType.multiline,
+                            //maxLengthEnforcement: null,
                             maxLines: null,
                             controller: controller.textController,
                             autofocus: false,
                             focusNode: controller.contentNode,
                             decoration: InputDecoration(
                               hintText: "Messages...",
+                              hintStyle: TextStyle(fontSize: 17.5),
+                              //prefixIcon: Icon(Icons.emoji_emotions),
+                              //border: OutlineInputBorder(borderRadius: BorderRadius.horizontal(left: Radius.circular(30), right: Radius.circular(30))),
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        height: 30.h,
-                        width: 30.w,
+                        height: 47.h,
+                        width: 47.w,
                         margin: EdgeInsets.only(left: 5.w),
-                        child: GestureDetector(
-                          child: Icon(
-                            Icons.attach_file,
-                            weight: 10,
-                            size: 35.w,
-                            color: Colors.blue,
-                          ),
-                          onTap: () {
-                            
-                          },
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
                         ),
+                        // child:  Icon(
+                        //     Icons.attach_file,
+                        //     weight: 10,
+                        //     size: 35.w,
+                        //     color: Colors.blue,
+                        //   ),
+                        child: SpeedDial(
+                          animationDuration: Duration(milliseconds: 250),
+                          animatedIcon: AnimatedIcons.view_list,
+                          spacing: 8,
+                          spaceBetweenChildren: 12,
+                          overlayColor: Colors.black,
+                          overlayOpacity: 0.2,
+                          children: [
+                            SpeedDialChild(
+                              backgroundColor: Color.fromARGB(255, 10, 160, 15),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.location_on,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                            SpeedDialChild(
+                              backgroundColor: Color.fromARGB(255, 144, 5, 169),
+                              child: IconButton(
+                                  onPressed: () {
+                                    controller.imgFromGallery();
+                                    
+                                  },
+                                  icon: Icon(
+                                    Icons.photo_library,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                            SpeedDialChild(
+                              backgroundColor: Color.fromARGB(255, 223, 135, 3),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.file_copy,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                            SpeedDialChild(
+                              backgroundColor: Color.fromARGB(255, 8, 132, 234),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.camera,
+                                    color: Colors.white,
+                                  )),
+                            ),
+                          ],
+                        ),
+                        //),
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 10.w, top: 5.h),

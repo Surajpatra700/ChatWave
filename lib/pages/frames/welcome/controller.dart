@@ -1,6 +1,5 @@
 import 'package:chat_wave/common/routes/names.dart';
 import 'package:chat_wave/common/services/config.dart';
-import 'package:chat_wave/pages/frames/sign_in/index.dart';
 import 'package:chat_wave/pages/frames/welcome/state.dart';
 import 'package:get/get.dart';
 

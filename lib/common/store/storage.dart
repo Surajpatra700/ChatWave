@@ -36,6 +36,6 @@ class StorageService extends GetxService {
   }
 
   Future<bool> remove(String key) async {
-    return await _prefs.remove(key);
+    return await _prefs.remove(key); // Helps to remove an entry from shared preference storage
   }
 }

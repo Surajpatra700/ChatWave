@@ -8,6 +8,6 @@ class ContactBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ContactController>(() => ContactController());
-    Get.lazyPut<ChatController>(() => ChatController());
+    //Get.lazyPut<ChatController>(() => ChatController());
   }
 }
