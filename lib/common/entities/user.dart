@@ -69,9 +69,32 @@ class UserLoginResponseEntity {
     );
   }
   Map<String, dynamic> toJson() => {
-          "access_token": accessToken,
-          "display_name": displayName,
-          "email": email,
-          "photoUrl": photoUrl,
-        };
+        "access_token": accessToken,
+        "display_name": displayName,
+        "email": email,
+        "photoUrl": photoUrl,
+      };
+}
+
+class MeListItem {
+  String? name;
+  String? icon;
+  String? explain;
+  String? route;
+
+  MeListItem({
+    this.name,
+    this.icon,
+    this.explain,
+    this.route,
+  });
+
+  MeListItem.fromJson(Map<String, dynamic> json) {
+    MeListItem(
+      name: json['name'],
+      icon: json['icon'],
+      explain: json['explain'],
+      route: json['route'],
+    );
+  }
 }

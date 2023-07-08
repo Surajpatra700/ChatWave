@@ -1,5 +1,10 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
+import 'package:chat_wave/common/entities/user.dart';
 import 'package:chat_wave/common/style/appColor.dart';
 import 'package:chat_wave/pages/profiles/index.dart';
+import 'package:chat_wave/pages/profiles/widgets/head_item.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,141 +14,84 @@ class ProfilePage extends GetView<ProfileController> {
 
   AppBar _buildAppbar() {
     return AppBar(
+      backgroundColor: Colors.transparent,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Color.fromARGB(255, 176, 106, 231),
+          Color.fromARGB(255, 166, 112, 231),
+          Color.fromARGB(255, 131, 123, 231),
+          Color.fromARGB(255, 104, 132, 231),
+        ])),
+      ),
       title: Text(
         "Profile",
         style: TextStyle(
-          color: Colors.black,
-          fontSize: 15.sp,
-          fontWeight: FontWeight.normal,
+          color: Colors.white,
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
   }
 
-  Widget _buildProfilePhoto() {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          width: 120.w,
-          height: 120.h,
-          decoration: BoxDecoration(
-            color: AppColor.primarySecondaryBackground,
-            borderRadius: BorderRadius.circular(60.w),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: Offset(0, 1),
-              ),
-            ],
-          ),
-          child: Image(image: AssetImage("assets/images/person.png")),
-        ),
-        Positioned(
-          bottom: 5.w,
-          right: 0.w,
-          height: 35.w,
-          child: GestureDetector(
-            child: Container(
-              height: 35.w,
-              width: 35.w,
-              decoration: BoxDecoration(
-                color: AppColor.primaryElement,
-                borderRadius: BorderRadius.circular(40.w),
-              ),
-              child: Icon(Icons.edit,color: Colors.white,),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDataButton() {
-    return GestureDetector(
-      child: Container(
-        width: 295.w,
-        height: 44.h,
-        margin: EdgeInsets.only(top: 60.h, bottom: 30.h),
-        decoration: BoxDecoration(
-          color: AppColor.primaryElement,
-          borderRadius: BorderRadius.circular(5.w),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: Offset(0, 1),
-            ),
-          ],
-        ),
+  Widget MeItem(MeListItem item) {
+    return Container(
+      height: 56.w,
+      color: AppColor.primaryBackground,
+      margin: EdgeInsets.only(bottom: 1.w),
+      padding: EdgeInsets.only(top: 0.w, left: 15.w, right: 15.w),
+      child: InkWell(
+        onTap: () {
+          if (item.route == "/logout") {
+            controller.onLogOut();
+          }
+        },
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Complete",
-              style: TextStyle(
-                color: AppColor.primaryElementText,
-                fontSize: 15.sp,
-                fontWeight: FontWeight.normal,
+            Container(
+              height: 56.w,
+              child: Image(
+                image: AssetImage(item.icon ?? ""),
+                width: 40.w,
+                height: 40.w,
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLogoutButton() {
-    return GestureDetector(
-      child: Container(
-        width: 295.w,
-        height: 44.h,
-        margin: EdgeInsets.only(top: 0.h, bottom: 30.h),
-        decoration: BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.circular(5.w),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: Offset(0, 1),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Logout",
-              style: TextStyle(
-                color: AppColor.primaryElementText,
-                fontSize: 15.sp,
-                fontWeight: FontWeight.normal,
+            //Spacer(),
+            Padding(
+              padding: EdgeInsets.only(left: 20.w),
+              child: Container(
+                margin: EdgeInsets.only(left: 14.w),
+                child: Text(
+                  item.name ?? "",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15.sp),
+                ),
               ),
             ),
+            Spacer(),
+            Container(
+                child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.keyboard_arrow_right, size: 22.w))),
           ],
         ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.end,
+        //   crossAxisAlignment: CrossAxisAlignment.center,
+        //   children: [
+        //     Container(
+        //       child: IconButton(onPressed: (){}, icon: Icon(Icons.keyboard_arrow_right,size: 15.w))
+        //     ),
+        //   ],
+        // ),
+        //   ],
+        // ),
       ),
-      onTap: () {
-        Get.defaultDialog(
-          title: "Are you sure want to log out?",
-          titleStyle: TextStyle(fontSize: 16.sp),
-          content: Container(),
-          onConfirm: () {
-            controller.goLogout();
-          },
-          onCancel: () {
-            //Get.back();
-          },
-          textConfirm: "Confirm",
-          textCancel: "Cancel",
-          confirmTextColor: Colors.white,
-        );
-      },
     );
   }
 
@@ -152,25 +100,33 @@ class ProfilePage extends GetView<ProfileController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _buildAppbar(),
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _buildProfilePhoto(),
-                    _buildDataButton(),
-                    _buildLogoutButton(),
-                  ],
+      body: Obx(() => CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding: EdgeInsets.symmetric(vertical: 0.w, horizontal: 0.w),
+                sliver: SliverToBoxAdapter(
+                  child: controller.state.head_detail.value == null
+                      ? Container()
+                      : HeadItem(controller.state.head_detail.value!),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 0.w,
+                  horizontal: 0.w,
+                ),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      var item = controller.state.meListItem[index];
+                      return MeItem(item);
+                    },
+                    childCount: controller.state.meListItem.length,
+                  ),
+                ),
+              ),
+            ],
+          )),
     );
   }
 }

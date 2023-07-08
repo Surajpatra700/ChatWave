@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:chat_wave/pages/contacts/index.dart';
 import 'package:chat_wave/pages/frames/application/index.dart';
 import 'package:chat_wave/pages/message/index.dart';
+import 'package:chat_wave/pages/profiles/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class ApplicationPage extends GetView<ApplicationController> {
       children: [
         MessagePage(),
         ContactPage(),
-        Center(child: Container(child: Text("profile"),)),
+        ProfilePage(),
       ],
     );
   }

@@ -1,6 +1,7 @@
-// import 'package:chat_wave/common/entities/user.dart';
-// import 'package:get/get.dart';
+import 'package:chat_wave/common/entities/user.dart';
+import 'package:get/get.dart';
 
 class ProfileState {
-  //var head_detail = UserItem().obs;
+  var head_detail = Rx<UserLoginResponseEntity?>(null);
+  RxList<MeListItem> meListItem = <MeListItem>[].obs;
 }

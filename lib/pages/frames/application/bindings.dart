@@ -3,6 +3,7 @@
 import 'package:chat_wave/pages/contacts/controller.dart';
 import 'package:chat_wave/pages/frames/application/index.dart';
 import 'package:chat_wave/pages/message/index.dart';
+import 'package:chat_wave/pages/profiles/controller.dart';
 import 'package:get/get.dart';
 
 class ApplicationBinding implements Bindings {
@@ -11,5 +12,6 @@ class ApplicationBinding implements Bindings {
     Get.lazyPut<ApplicationController>(() => ApplicationController());
     Get.lazyPut<ContactController>(() => ContactController());
     Get.lazyPut<MessageController>(() => MessageController());
+    Get.lazyPut<ProfileController>(() => ProfileController());
   }
 }
